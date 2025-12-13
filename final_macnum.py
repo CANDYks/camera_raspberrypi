@@ -68,7 +68,7 @@ lf_pwm.start(0)
 rr_pwm.start(0)
 lr_pwm.start(0)
 
-SPEED = 30 # 速度 0-100%
+SPEED = 80 # 速度 0-100%
 
 # ==========================================
 # 4. 核心控制函式
@@ -109,7 +109,7 @@ try:
     # 1. 前進
     print("動作: 前進 (Forward)")
     move_motors(SPEED, MEC_STRAIGHT_FORWARD)
-    time.sleep(1.5)
+    time.sleep(5)
     stop_motors()
     time.sleep(0.5)
 
