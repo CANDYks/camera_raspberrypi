@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FPV Robot Controller</title>
+    <style>
+        body { 
+            background-color: #222; 
+            color: white; 
+            text-align: center; 
+            font-family: Arial, sans-serif;
+            touch-action: manipulation;
+            margin: 0; padding: 0;
+        }
+        
+        /* 讓影片自適應寬度，並加上邊框 */
+        .camera-feed {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            border: 2px solid #00ff00; /* 綠色邊框 */
+            margin-bottom: 10px;
+            background-color: #000;
+        }
+
+        h1 { font-size: 1.2em; margin: 10px 0; }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+        
+        button {
+            background: #444;
+            color: white;
+            border: 2px solid #666;
+            border-radius: 10px;
+            padding: 15px; /* 按鈕稍微改小一點以免畫面太長 */
+            font-size: 24px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        button:active { background: #007bff; border-color: #0056b3; }
+        .spacer { visibility: hidden; }
+        .rotate-btn { background: #553333; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+    <img src="{{ url_for('video_feed') }}" class="camera-feed">
+    <div style="margin: 10px;">
+        <button style="font-size: 16px; background: #007bff;" onclick="send('snap')>
+        <button id="smile-btn" style="font-size: 16px;" onclick="toggleSmile()">/smile mode</button>
+    </div>
+    <script>
+        function toggleSmile(){
+        .then(r => r.text())
+        .then(status =>{
+            const btn = document.getElementById('smile-btn');
+            btn.innerText = (status ==='On')?"smile mode:ON": "smile mode:OFF";
+            btn.style.background = (status === 'On') ? "#ffc107" : "#444";
+            });
+        }
+    </script>
+    <div class="container">
+        <button class="rotate-btn" ontouchstart="send('rotate_ccw')" ontouchend="send('stop')" onmousedown="send('rotate_ccw')" onmouseup="send('stop')">↺</button>
+        <button ontouchstart="send('forward')" ontouchend="send('stop')" onmousedown="send('forward')" onmouseup="send('stop')">▲</button>
+        <button class="rotate-btn" ontouchstart="send('rotate_cw')" ontouchend="send('stop')" onmousedown="send('rotate_cw')" onmouseup="send('stop')">↻</button>
+
+        <button ontouchstart="send('left')" ontouchend="send('stop')" onmousedown="send('left')" onmouseup="send('stop')">◀</button>
+        <button style="background:#800;" onclick="send('stop')">STOP</button>
+        <button ontouchstart="send('right')" ontouchend="send('stop')" onmousedown="send('right')" onmouseup="send('stop')">▶</button>
+
+        <div class="spacer"></div>
+        <button ontouchstart="send('backward')" ontouchend="send('stop')" onmousedown="send('backward')" onmouseup="send('stop')">▼</button>
+        <div class="spacer"></div>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <h3>Height Control</h3>
+        <button style="background:#28a745; width: 120px;" ontouchstart="send('up')" ontouchend="send('act_stop')" onmousedown="send('up')" onmouseup="send('act_stop')">升高 ▲</button>
+        <button style="background:#dc3545; width: 120px;" ontouchstart="send('down')" ontouchend="send('act_stop')" onmousedown="send('down')" onmouseup="send('act_stop')">降低 ▼</button>
+    </div>
+
+    <script>
+        function send(command) {
+            fetch('/action/' + command);
+        }
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+
+</body>
+</html>
