@@ -53,12 +53,15 @@
 <body>
 
     <img src="{{ url_for('video_feed') }}" class="camera-feed">
-    <div style="margin: 10px;">
-        <button style="font-size: 16px; background: #007bff;" onclick="send('snap')>
-        <button id="smile-btn" style="font-size: 16px;" onclick="toggleSmile()">/smile mode</button>
+        <div style="margin: 10px;">
+        <button style="font-size: 16px; padding: 10px; background: #007bff; color: white; border-radius: 10px;" onclick="send('snap')">snap</button>
+        
+        <button id="smile-btn" style="font-size: 16px; padding: 10px; background: #444; color: white; border-radius: 10px;" onclick="toggleSmile()">smile mode: OFF</button>
+       
     </div>
     <script>
         function toggleSmile(){
+        fetch('/action/toggle_smile')
         .then(r => r.text())
         .then(status =>{
             const btn = document.getElementById('smile-btn');

@@ -167,7 +167,9 @@ def action(cmd):
     if cmd == 'snap':
         cap = cv2.VideoCapture(VIDEO_URL)
         ret, frame = cap.read()
-        if ret: save_photo(frame, "manual")
+        if ret:
+            save_photo(frame, "manual")
+        cap.release()
         return "Snapped"
     elif cmd == 'toggle_smile':
         SMILE_MODE = not SMILE_MODE
