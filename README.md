@@ -33,15 +33,17 @@
 ### 5\. 實體照片與介面
 
 **機器人外觀**
-*(請在此處貼上您完成後的機器人照片)*
-`![Robot_Appearance](你的圖片連結.jpg)`
+![468435](https://github.com/user-attachments/assets/4590d43b-a572-4e6a-b96f-15cbed3c7fa1)
+
 
 **Web 控制介面**
 透過手機瀏覽器連線，具備即時影像、方向控制、升降控制與 AI 模式切換。
-`![Web_Interface](image_51b547.png)`
+<img width="852" height="524" alt="image" src="https://github.com/user-attachments/assets/88e83ed3-3f4d-4396-81be-0af0cd21eb52" />
 
-### 6\. 電路配置 (GPIO 接腳定義)
 
+### 6\. 電路配置   
+
+![S__6365192](https://github.com/user-attachments/assets/74bdebe1-a5bb-4657-ba85-59c7da95dd1c)
 
 BCM 編號
 
