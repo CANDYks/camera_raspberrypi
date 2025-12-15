@@ -1,1 +1,0 @@
-print("Hello, Raspberry Pi! 這是我的第一個測試")
