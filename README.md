@@ -101,6 +101,7 @@ pip3 install flask RPi.GPIO opencv-python numpy
 本專案使用手機作為無線攝影機。請在手機上下載「IP Webcam」類型的 App，開啟伺服器後，記下畫面上的 IP 位址（例如 `192.168.1.100:8080`）。
 ![469072](https://github.com/user-attachments/assets/43be5f9e-64f3-4b0e-bf23-ab6aeac47e2c)
 ipv4的部分
+
 開啟 `web_car.py`，找到以下段落並修改：
 
 ```python
