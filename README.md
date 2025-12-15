@@ -7,19 +7,6 @@
 此外，系統整合了 OpenCV 影像辨識，具備「微笑快門」功能，當偵測到您露出笑容時，機器人會自動捕捉精彩瞬間。
 
 -----
-
-## 目錄
-
-1.  [功能特色](https://www.google.com/search?q=%23-%E5%8A%9F%E8%83%BD%E7%89%B9%E8%89%B2)
-2.  [硬體材料清單](https://www.google.com/search?q=%23-%E7%A1%AC%E9%AB%94%E6%9D%90%E6%96%99%E6%B8%85%E5%96%AE)
-3.  [硬體組裝與電路接線](https://www.google.com/search?q=%23-%E7%A1%AC%E9%AB%94%E7%B5%84%E8%A3%9D%E8%88%87%E9%9B%BB%E8%B7%AF%E6%8E%A5%E7%B7%9A)
-4.  [軟體環境建置](https://www.google.com/search?q=%23-%E8%BB%9F%E9%AB%94%E7%92%B0%E5%A2%83%E5%BB%BA%E7%BD%AE)
-5.  [程式碼說明與設定](https://www.google.com/search?q=%23-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E8%AA%AA%E6%98%8E%E8%88%87%E8%A8%AD%E5%AE%9A)
-6.  [操作指南](https://www.google.com/search?q=%23-%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97)
-7.  [參考資料](https://www.google.com/search?q=%23-%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99)
-
------
-
 ## 功能特色
 
   * **全向移動控制**：支援前進、後退、左右橫移、原地旋轉及斜向移動。
@@ -30,8 +17,6 @@
 -----
 
 ## 硬體材料清單
-
-在開始之前，請準備以下材料：
 
 | 項目 | 說明 | 數量 |
 | :--- | :--- | :--- |
@@ -132,7 +117,7 @@ PHONE_PORT = "8080"       # 通常預設為 8080
 
 -----
 
-## 🎮 操作指南
+## 操作指南
 
 ### 1\. 啟動機器人
 
