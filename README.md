@@ -1,125 +1,167 @@
-# 樹莓派麥克納姆輪智慧自拍機器人
-
-### 1\. 關於專案
-
-一台結合 **全向移動** 和 **AI 視覺辨識** 的智慧自拍機器人。可以透過網頁遠端遙控、橫向平移尋找最佳拍攝角度，還具備「自動升降」功能調整高度，並能開啟「微笑偵測模式」，當你露出笑容時自動捕捉精彩瞬間。
-
-### 2\. 專案緣由
-
-出們玩的時候，如果四周剛好沒人，或是不想麻煩人，就可以用這個，從遠端拍照，現在可能腳位都是固定的，有這台可以控制移動的腳架，就不用一直來回跑，調整位置。
-如果只是想記錄生活，也可以在捕捉到微笑時，自動按下快門。
-
-### 3\. 專案構想
-
-按照以下步驟，實現智慧自拍載具：
-
-1.  **全向移動底盤**：使用麥克納姆輪，實現前後、左右橫移、原地旋轉。
-2.  **升降雲台**：使用推桿，讓相機視角可以調整高低。
-3.  **視覺中樞**：利用 OpenCV 捕捉影像，即時回傳至網頁。
-4.  **智慧快門**：實作 Haar Cascade 模型，辨識人臉與微笑，自動觸發快門。
-5.  **Web 控制介面**：使用 Flask 架設網頁伺服器，用手機瀏覽器即可全功能遙控。
-
-### 4\. 所需材料
-
-1.  **Raspberry Pi 4 Model B** (核心控制器)
-2.  **麥克納姆輪底盤套件** (含 4 顆 DC 減速馬達)
-3.  **L298N 馬達驅動模組 \* 2** (驅動 4 顆輪子)
-4.  **電動推桿 (Linear Actuator)600mm 12v \* 1** (用於升降鏡頭)
-5.  **18650 鋰電池組(串聯3顆)** (提供馬達 12V 強力電源)
-6.  **降壓模組** (降壓給樹莓派)
-7.  **手機** (拍照)
-8.  **杜邦線、麵包板、固定束帶、壓克力板、紙箱**
-
-### 5\. 實體照片與介面
-
-**機器人外觀**
-![468435](https://github.com/user-attachments/assets/4590d43b-a572-4e6a-b96f-15cbed3c7fa1)
+# 樹莓派麥克納姆輪智慧自拍機器人 
+![468435](https://github.com/user-attachments/assets/4fc84af7-bab6-49b6-89e4-fb11fe804634)
 
 
-**Web 控制介面**
-透過手機瀏覽器連線，具備即時影像、方向控制、升降控制與 AI 模式切換。
-<img width="852" height="524" alt="image" src="https://github.com/user-attachments/assets/88e83ed3-3f4d-4396-81be-0af0cd21eb52" />
+這是一個結合 **全向移動技術** 與 **AI 視覺辨識** 的智慧攝影機器人專案。透過麥克納姆輪（Mecanum Wheels）的特殊構造，它不僅能前後移動，還能進行「橫向平移（Strafing）」，完美解決了調整拍攝角度時需要反覆挪動腳架的困擾。
+
+此外，系統整合了 OpenCV 影像辨識，具備「微笑快門」功能，當偵測到您露出笑容時，機器人會自動捕捉精彩瞬間。
+
+-----
+
+## 目錄
+
+1.  [功能特色](https://www.google.com/search?q=%23-%E5%8A%9F%E8%83%BD%E7%89%B9%E8%89%B2)
+2.  [硬體材料清單](https://www.google.com/search?q=%23-%E7%A1%AC%E9%AB%94%E6%9D%90%E6%96%99%E6%B8%85%E5%96%AE)
+3.  [硬體組裝與電路接線](https://www.google.com/search?q=%23-%E7%A1%AC%E9%AB%94%E7%B5%84%E8%A3%9D%E8%88%87%E9%9B%BB%E8%B7%AF%E6%8E%A5%E7%B7%9A)
+4.  [軟體環境建置](https://www.google.com/search?q=%23-%E8%BB%9F%E9%AB%94%E7%92%B0%E5%A2%83%E5%BB%BA%E7%BD%AE)
+5.  [程式碼說明與設定](https://www.google.com/search?q=%23-%E7%A8%8B%E5%BC%8F%E7%A2%BC%E8%AA%AA%E6%98%8E%E8%88%87%E8%A8%AD%E5%AE%9A)
+6.  [操作指南](https://www.google.com/search?q=%23-%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97)
+7.  [參考資料](https://www.google.com/search?q=%23-%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99)
+
+-----
+
+## 功能特色
+
+  * **全向移動控制**：支援前進、後退、左右橫移、原地旋轉及斜向移動。
+  * **Web 遠端遙控**：基於 Flask 架設網頁伺服器，無須安裝 App，手機瀏覽器即可連線控制。
+  * **AI 智慧自拍**：整合 Haar Cascade 分類器，具備人臉追蹤與微笑偵測自動拍照功能。
+  * **自動升降雲台**：透過電動推桿遠端調整相機高度。
+
+-----
+
+## 硬體材料清單
+
+在開始之前，請準備以下材料：
+
+| 項目 | 說明 | 數量 |
+| :--- | :--- | :--- |
+| **核心控制器** | Raspberry Pi 4 Model B (建議 4GB 以上) | 1 |
+| **底盤套件** | 麥克納姆輪底盤 (含 4 顆 DC 減速馬達) | 1 組 |
+| **馬達驅動模組** | L298N | 3 |
+| **升降模組** | 12V 電動推桿 (行程 600mm 或依需求) | 1 |
+| **電源供應** | 18650 鋰電池 (串聯 3 顆，約 12V) | 1 組 |
+| **穩壓模組** | 降壓模組 (12V 轉 5V 給樹莓派供電) | 1 |
+| **影像裝置** | 智慧型手機 (作為 IP Camera) | 1 |
+| **其他耗材** | 杜邦線、麵包板、壓克力板、束帶 | 若干 |
+
+-----
+
+## 硬體組裝與電路接線
+
+本專案使用 GPIO BCM 編碼進行控制。請依照下表將馬達驅動板與樹莓派 GPIO 腳位連接。
+
+### 1\. 麥克納姆輪馬達配置
+
+麥克納姆輪的安裝方向非常重要，請確保輪子上的滾輪軸線呈現 **X 型** 排列（從上方俯視）。
+
+**驅動模組 A (控制前輪)**：
+
+  * **右前輪 (RF)**: ENA(PWM)=`GPIO 24`, IN1=`GPIO 25`, IN2=`GPIO 5`
+  * **左前輪 (LF)**: ENB(PWM)=`GPIO 26`, IN1=`GPIO 6`, IN2=`GPIO 16`
+
+**驅動模組 B (控制後輪)**：
+
+  * **右後輪 (RR)**: ENA(PWM)=`GPIO 12`, IN1=`GPIO 17`, IN2=`GPIO 27`
+  * **左後輪 (LR)**: ENB(PWM)=`GPIO 13`, IN1=`GPIO 22`, IN2=`GPIO 23`
+
+### 2\. 升降推桿配置
+
+  * **推桿馬達**: ENA(PWM)=`GPIO 18`, IN1=`GPIO 20`, IN2=`GPIO 21`
+
+### 3\. 電源配置建議
+
+  * **動力電源**：將 3 顆 18650 電池串聯 (12V)，直接連接至 L298N 的 12V 輸入端與電動推桿。
+  * **邏輯電源**：使用降壓模組將 12V 轉為 5V/3A，透過 USB-C 或 GPIO 5V 腳位供電給 Raspberry Pi。
+  * **共地 (Common Ground)**：**非常重要！** 樹莓派的 GND 必須與電池組的負極（GND）相連，否則控制訊號無效。
+
+> **參考圖片**：
+> ![S__6365192](https://github.com/user-attachments/assets/2081f793-0147-4364-ac8d-1aa5cea736af)
 
 
-### 6\. 電路配置   
+-----
 
-![S__6365192](https://github.com/user-attachments/assets/74bdebe1-a5bb-4657-ba85-59c7da95dd1c)
+## 軟體環境建置
 
-BCM 編號
+請依序在 Raspberry Pi 的終端機執行以下指令，安裝所需的 Python 函式庫。
 
-**驅動模組 A (前輪)**
-
-  * **右前輪 (RF)**: PWM=24, IN1=25, IN2=5
-  * **左前輪 (LF)**: PWM=26, IN1=6, IN2=16
-
-**驅動模組 B (後輪)**
-
-  * **右後輪 (RR)**: PWM=12, IN1=17, IN2=27
-  * **左後輪 (LR)**: PWM=13, IN1=22, IN2=23
-
-**升降推桿 (Actuator)**
-
-  * **推桿控制**: PWM=18, IN1=20, IN2=21 (共用或獨立驅動板)
-
-### 7\. 程式設計、環境設置
-
-**環境設置**
-使用 Python 3 與 Flask 框架，並需安裝 OpenCV。
+### 1\. 更新系統與安裝套件
 
 ```bash
 sudo apt-get update
+sudo apt-get upgrade
+```
+
+### 2\. 安裝專案依賴庫
+
+本專案使用 Flask 架設網頁，並使用 OpenCV 進行影像處理。
+
+```bash
 pip3 install flask RPi.GPIO opencv-python numpy
 ```
 
-**核心程式碼說明 (web\_car.py)**
+*注意：安裝 `opencv-python` 在樹莓派上可能需要較長時間，請耐心等候。*
 
-  * **OpenCV 微笑偵測邏輯**：
-    載入 `haarcascade_smile.xml`，偵測到微笑且信心度足夠時，自動儲存影像。
+### 3\. 下載專案程式碼
 
-    ```python
-    # 部分程式碼摘要
-    if SMILE_MODE:
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        smiles = smile_cascade.detectMultiScale(roi_gray, 1.8, 20)
-        if len(smiles) > 0:
-            save_photo(frame, "smile")
-    ```
+將本專案的所有檔案（`web_car.py`, `templates/index.html` 等）下載至樹莓派的同一資料夾中。
 
-  * **麥克納姆輪控制 (全向移動)**：
-    透過位元遮罩 (Bitmask) 同時控制四顆輪子的正反轉，實現橫移 (Strafing)。
+-----
 
-    ```python
-    MEC_SIDEWAYS_RIGHT = 0b01101001
-    MEC_SIDEWAYS_LEFT  = 0b10010110
+## 📝 程式碼說明與設定
 
-    def move_motors(speed, dir_byte):
-        # 解析位元並輸出 GPIO 訊號給 L298N
-        # ... (詳見原始碼)
-    ```
+在執行之前，您需要根據您的網路環境微調程式碼。
 
-  * **Flask 網頁伺服器**：
-    利用 Video Streaming 技術將 OpenCV 處理過的畫面即時傳送到網頁。
+### 1\. 設定手機鏡頭 IP (IP Webcam)
 
-    ```python
-    @app.route('/video_feed')
-    def video_feed():
-        return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-    ```
+本專案使用手機作為無線攝影機。請在手機上下載「IP Webcam」類型的 App，開啟伺服器後，記下畫面上的 IP 位址（例如 `192.168.1.100:8080`）。
+![469072](https://github.com/user-attachments/assets/43be5f9e-64f3-4b0e-bf23-ab6aeac47e2c)
+ipv4的部分
+開啟 `web_car.py`，找到以下段落並修改：
 
-### 8\. Demo 影片
+```python
+# web_car.py Line 13-14
+PHONE_IP = "192.168.X.X"  # <--- 修改為您的手機 IP
+PHONE_PORT = "8080"       # 通常預設為 8080
+```
 
-*(此處可放您的 YouTube 測試影片連結)*
-[點擊觀看 Omni-Selfie-Bot 實測影片](https://www.google.com/search?q=https://youtu.be/%E4%BD%A0%E7%9A%84%E5%BD%B1%E7%89%87ID)
+### 2\. 核心邏輯解析
 
-### 9\. 可以改進的地方
+  * **`web_car.py`**：主程式。負責啟動 Web Server，處理影像串流與 GPIO 控制。
+      * **微笑偵測**：程式會自動下載 `haarcascade_smile.xml` 模型。當 `SMILE_MODE` 開啟時，OpenCV 會分析影像，偵測到微笑即呼叫 `save_photo()` 儲存照片。
+      * **麥克納姆輪演算法**：透過 `move_motors(speed, dir_byte)` 函式，利用位元遮罩（Bitmask）同時控制 4 顆輪子的正反轉，實現全向移動。
 
-1.  **電源整合**：目前樹莓派與馬達分開供電，未來可設計穩壓電路統一由鋰電池供電。
-2.  **人臉追蹤**：目前只能定點拍攝，未來可加入 PID 控制，讓機器人自動旋轉跟隨人臉移動。
-3.  **手勢控制**：加入 MediaPipe 手勢辨識，比「5」停止移動，比「YA」自動拍照。
-4.  **推桿限位**：目前推桿依靠時間控制，未來可加入極限開關 (Limit Switch) 防止過推。
+-----
 
-### 10\. 參考資料
+## 🎮 操作指南
 
-  * [Raspberry Pi Flask Video Streaming](https://blog.miguelgrinberg.com/post/video-streaming-with-flask)
-  * [OpenCV Face Detection Documentation](https://docs.opencv.org/3.4/db/d28/tutorial_cascade_classifier.html)
-  * [Mecanum Wheel Kinematics](https://en.wikipedia.org/wiki/Mecanum_wheel)
+### 1\. 啟動機器人
+
+在樹莓派終端機執行主程式：
+
+```bash
+python3 web_car.py
+```
+
+若看到 `Running on http://0.0.0.0:5000/` 代表伺服器已啟動。
+
+### 2\. 連線控制介面
+
+確認手機或電腦與樹莓派連線至 **同一個 Wi-Fi 網路**。打開瀏覽器輸入：
+`http://<樹莓派的IP>:5000`
+如不知道樹莓派ip，可以在終端輸入`hostname -I`
+### 3\. 介面功能介紹
+
+  * **方向控制區**：包含前後左右（平移）、以及左旋（↺）、右旋（↻）按鈕。
+  * **Height Control**：控制推桿「升高 ▲」或「降低 ▼」以調整相機視角。
+  * **Snap**：手動拍照。
+  * **Smile Mode**：切換 AI 模式。開啟後（按鈕變黃），當鏡頭前的人露出微笑，系統會自動拍照並儲存至樹莓派中。
+
+-----
+
+## 🔗 參考資料
+
+本專案參考了以下文獻與技術文件：
+
+1.  **Flask 視訊串流技術**：[Video Streaming with Flask](https://blog.miguelgrinberg.com/post/video-streaming-with-flask)
+2.  **OpenCV 人臉辨識文件**：[OpenCV Cascade Classifier](https://docs.opencv.org/3.4/db/d28/tutorial_cascade_classifier.html)
+3.  **麥克納姆輪運動學原理**：[Mecanum Wheel Kinematics - Wikipedia](https://en.wikipedia.org/wiki/Mecanum_wheel)
