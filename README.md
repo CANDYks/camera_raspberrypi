@@ -57,7 +57,7 @@
 
   * **動力電源**：將 3 顆 18650 電池串聯 (12V)，直接連接至 L298N 的 12V 輸入端與電動推桿。
   * **邏輯電源**：使用降壓模組將 12V 轉為 5V/3A，透過 USB-C 或 GPIO 5V 腳位供電給 Raspberry Pi。
-  * **共地 (Common Ground)**：**非常重要！** 樹莓派的 GND 必須與電池組的負極（GND）相連，否則控制訊號無效。
+  * **共地 (Common Ground)**： 樹莓派的 GND 必須與電池組的負極（GND）相連，否則控制訊號無效。
 
 > **參考圖片**：
 > ![S__6365192](https://github.com/user-attachments/assets/2081f793-0147-4364-ac8d-1aa5cea736af)
