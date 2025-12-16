@@ -92,7 +92,7 @@ pip3 install flask RPi.GPIO opencv-python numpy
 
 -----
 
-## 📝 程式碼說明與設定
+## 程式碼說明與設定
 
 在執行之前，您需要根據您的網路環境微調程式碼。
 
@@ -141,10 +141,13 @@ python3 web_car.py
   * **Height Control**：控制推桿「升高 ▲」或「降低 ▼」以調整相機視角。
   * **Snap**：手動拍照。
   * **Smile Mode**：切換 AI 模式。開啟後（按鈕變黃），當鏡頭前的人露出微笑，系統會自動拍照並儲存至樹莓派中。
+ <img width="895" height="518" alt="螢幕擷取畫面 2025-12-15 015905" src="https://github.com/user-attachments/assets/bed7b61f-64b1-4049-a002-93a19ebf9bab" />
 
 -----
+##影片
+https://www.youtube.com/shorts/6LY6yvlXrSw
 
-## 🔗 參考資料
+## 參考資料
 
 本專案參考了以下文獻與技術文件：
 
