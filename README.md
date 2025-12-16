@@ -86,7 +86,8 @@ pip3 install flask RPi.GPIO opencv-python numpy
 
 *注意：安裝 `opencv-python` 在樹莓派上可能需要較長時間，請耐心等候。*
 *使用buster，可能會一直遇到failed，無法安裝的情況，會需要切換伺服器*
-*解法:可以修改主要的 Raspbian 軟體源
+*解法:可以修改主要的 Raspbian 軟體源*
+
 這是負責大部分系統套件（如 libhdf5, libatlas 等）的來源。
 
 開啟編輯器：
