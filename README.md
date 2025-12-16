@@ -141,12 +141,14 @@ python3 web_car.py
   * **Height Control**：控制推桿「升高 ▲」或「降低 ▼」以調整相機視角。
   * **Snap**：手動拍照。
   * **Smile Mode**：切換 AI 模式。開啟後（按鈕變黃），當鏡頭前的人露出微笑，系統會自動拍照並儲存至樹莓派中。
- <img width="895" height="518" alt="螢幕擷取畫面 2025-12-15 015905" src="https://github.com/user-attachments/assets/bed7b61f-64b1-4049-a002-93a19ebf9bab" />
+<img width="445" height="634" alt="image" src="https://github.com/user-attachments/assets/bf96f60a-0792-4476-a031-537a6eb82571" />
+
 
 -----
 ##影片
 https://www.youtube.com/shorts/6LY6yvlXrSw
 
+https://youtu.be/qAxjjFGs5L0
 ## 參考資料
 
 本專案參考了以下文獻與技術文件：
