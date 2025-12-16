@@ -91,14 +91,14 @@ pip3 install flask RPi.GPIO opencv-python numpy
 
 開啟編輯器：
 
-ˊˊˊBash
+```Bash
 
 sudo nano /etc/apt/sources.list
-ˊˊˊ
+```
 修改內容： 找到原本類似 http://raspbian.raspberrypi.org/raspbian/ 的網址，將其註解掉（在前面加 #），並加入台灣 NCHC 的網址。或者直接將該行替換為：
-ˊˊˊ
+```
 deb http://free.nchc.org.tw/raspbian/raspbian/ buster main contrib non-free rpi
-ˊˊˊ
+```
 存檔並離開： 按下 Ctrl + O (存檔)，按 Enter 確認，然後按 Ctrl + X (離開)。
 
 再修改樹梅派專屬硬體源
@@ -106,23 +106,23 @@ deb http://free.nchc.org.tw/raspbian/raspbian/ buster main contrib non-free rpi
 
 開啟編輯器：
 
-ˊˊˊBash
+```Bash
 
 sudo nano /etc/apt/sources.list.d/raspbian.list
-ˊˊˊ
+```
 修改內容： 將原本的網址替換為 NCHC 的來源：
-ˊˊˊ
+```
 deb http://free.nchc.org.tw/raspberrypi/ buster main
-ˊˊˊ
+```
 同樣按下 Ctrl + O 存檔，Ctrl + X 離開。
 
 更新並生效
 修改完後，必須通知系統重新讀取清單。
 
-ˊˊˊBash
+```Bash
 
 sudo apt-get update
-ˊˊˊ
+```
 
 ### 3\. 下載專案程式碼
 
